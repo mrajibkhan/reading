@@ -3,10 +3,12 @@ package datastructure;
 /**
  * Created by rajib.khan on 3/22/17.
  */
-import java.util.*;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import java.util.*;
+import java.util.Stack;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 
 /*
@@ -16,9 +18,20 @@ import static org.hamcrest.CoreMatchers.*;
  * If you need more classes, simply define them inline.
  */
 
-public class BreadthFirstSearchSolution {
 
-    public BreadthFirstSearchSolution(){}
+/**
+ *                               (one)
+ *                             /       \
+ *                       (two)          (three)
+ *                       /    \            /    \
+ *                  (four)    (five)    (six)   (seven)
+ *                             /
+ *                           (eight)
+ */
+
+public class DepthFirstSearchSolution {
+
+    public DepthFirstSearchSolution(){}
 
     public class Node {
         Object data;
@@ -58,15 +71,15 @@ public class BreadthFirstSearchSolution {
                 return true;
             }
 
-
+            System.out.println("Start -> " + startNode.data + ", Search -> " + searchNode.data);
 
             // put the node in queue
-            Queue<Node> q = new LinkedList<Node>();
-            q.add(startNode);
+            java.util.Stack <Node> s = new Stack<Node>();
+            s.push(startNode);
 
             Node currentNode;
-            while(q.size() > 0){
-                currentNode = q.remove();
+            while(!s.isEmpty()){
+                currentNode = s.pop();
                 visited.add((String)currentNode.data);
 
                 if (currentNode.equals(searchNode)) {
@@ -75,11 +88,11 @@ public class BreadthFirstSearchSolution {
                 }
 
                 if(currentNode.leftNode != null) {
-                    q.add(currentNode.leftNode);
+                    s.add(currentNode.leftNode);
                 }
 
                 if(currentNode.rightNode != null) {
-                    q.add(currentNode.rightNode);
+                    s.add(currentNode.rightNode);
                 }
 
 
@@ -98,7 +111,7 @@ public class BreadthFirstSearchSolution {
 
     public static void main(String[] args) throws Exception {
 
-        BreadthFirstSearchSolution s = new BreadthFirstSearchSolution();
+        DepthFirstSearchSolution s = new DepthFirstSearchSolution();
         Node node1 = s.new Node("one");
 
         Node node2 = s.new Node("two");
@@ -146,9 +159,9 @@ public class BreadthFirstSearchSolution {
         assertThat("should find node6", isFound, is(true));
 
 
-        // startNode is node5, searchNode is node7
-        isFound = bfs.search(node5, node7);
-        assertThat("should not find node7 when starts from node5", isFound, is(false));
+        // startNode is node2, searchNode is node7
+        isFound = bfs.search(node2, node7);
+        assertThat("should not find node7 when starts from node2", isFound, is(false));
 
     }
 

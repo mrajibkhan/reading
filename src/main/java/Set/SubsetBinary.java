@@ -5,6 +5,8 @@ import java.util.List;
 
 /**
  * Created by rajib.khan on 3/25/17.
+ * source: http://www.geeksforgeeks.org/finding-all-subsets-of-a-given-set-in-java/
+ *
  */
 public class SubsetBinary {
 
