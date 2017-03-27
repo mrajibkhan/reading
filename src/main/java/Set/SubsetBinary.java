@@ -22,7 +22,10 @@ public class SubsetBinary {
         for (int i=0; i < totalCombination; i++) {
            List<String> c = new ArrayList<String>();
            for(int j = 0; j < length; j++) {
+               System.out.println("1<<" + j + " :: " + Integer.toBinaryString(1<<j));
+               System.out.println(i + " & 1 << " + j + " = " + (i & (1 << j)));
                if ( (i & (1 << j)) > 0) {
+
                    c.add(s[j]);
                }
            }
@@ -38,9 +41,11 @@ public class SubsetBinary {
 
 
 
-        List<List<String>> r = allCombinations(new String[] {"r", "a", "i", "y", "a", "n"});
+        List<List<String>> r = allCombinations(new String[] {"a","b","c"});
 
         System.out.println(r);
 
+        System.out.println(Integer.toBinaryString(1<<3));
+        System.out.println(1<<3);
     }
 }
